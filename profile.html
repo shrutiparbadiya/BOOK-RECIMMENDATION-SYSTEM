@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9ff;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .navbar {
+      background-color: #fff !important;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: #5A67D8 !important;
+    }
+
+    .navbar .nav-link img {
+      border: 2px solid #5A67D8;
+      padding: 2px;
+      background-color: #fff;
+      border-radius: 50%;
+    }
+
+    .navbar .dropdown-menu {
+      border: none;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      padding: 10px;
+    }
+
+    .navbar .dropdown-item:hover {
+      background-color: #f0f0ff;
+      color: #5A67D8;
+    }
+
+    .profile-card {
+      max-width: 500px;
+      background-color: #fdfdff;
+      border-radius: 20px;
+      border: 1px solid #eee;
+      margin-top: 80px;
+    }
+
+    .profile-card h3 {
+      font-weight: 600;
+      color: #5A67D8;
+    }
+
+    .profile-card .badge {
+      background-color: #5A67D8;
+      color: white;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light px-4">
+  <a class="navbar-brand" href="{{ url_for('index') }}">SmartBook</a>
+  <div class="collapse navbar-collapse justify-content-end">
+    {% if session.get('username') %}
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{{ url_for('static', filename='profile_icon.png') }}" alt="Profile" width="32" height="32">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+            <!-- <li><a class="dropdown-item" href="{{ url_for('profile') }}">View My Profile</a></li> -->
+            <li><a class="dropdown-item" href="{{ url_for('wishlist') }}">Wishlist</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    {% endif %}
+  </div>
+</nav>
+
+<div class="container">
+  <div class="card profile-card mx-auto p-4 shadow">
+    <div class="text-center">
+      <img src="{{ url_for('static', filename='profile_icon.png') }}" alt="Profile" class="rounded-circle mb-3" width="100" height="100">
+      <h3 class="mb-1">{{ username }}</h3>
+      <p class="text-muted">Book Lover 📚</p>
+    </div>
+    <hr>
+    <div class="d-flex justify-content-between align-items-center">
+      <h5>Wishlist</h5>
+      <span class="badge rounded-pill px-3 py-2 fs-6">{{ wishlist_count }}</span>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

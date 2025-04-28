@@ -1,0 +1,228 @@
+.book-details-layout {
+  display: flex;
+  justify-content: center;
+  align-items: stretch; /* Ensure equal height */
+  gap: 3rem;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+
+.left-section, .right-section {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Button wrapper for centering */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Card containers */
+.left-section, .right-section {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  width: 400px;
+  min-height: 500px;
+}
+
+/* Book Details Section */
+.book-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.book-author {
+  font-size: 1rem;
+  color: #666;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.book-image {
+  display: block;
+  margin: 0 auto 1.5rem auto;
+  width: 220px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+/* Buttons */
+#wishlist-button, .back-button {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 500;
+  border: none;
+  margin: 8px 4px 0 4px;
+  text-decoration: none;
+}
+
+#wishlist-button {
+  background-color: #f56565;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#wishlist-button:disabled {
+  background-color: #48bb78;
+}
+
+.wishlist-button:hover {
+  backgrnd-color: #8B0000;
+}
+.back-button {
+  
+  background-color: #4299e1;
+  color: white;
+}
+
+.back-button:hover {
+  background-color: #2b6cb0;
+}
+
+/* Recommended Section */
+.right-section h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #222;
+}
+
+.recommendations {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.recommendations li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  transition: all 0.2s ease;
+}
+
+.recommendations li:hover {
+  background-color: #edf2f7;
+  transform: scale(1.02);
+}
+
+.recommendations img {
+  width: 50px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.recommendations p {
+  margin: 0;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Mobile Friendly */
+@media (max-width: 900px) {
+  .book-details-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-section, .right-section {
+    width: 90%;
+    min-height: auto;
+  }
+
+  .book-image {
+    width: 180px;
+  }
+}
+
+/* Navbar cute style */
+.navbar {
+  background-color: #fff !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #5A67D8 !important;
+}
+
+.navbar .dropdown-menu {
+  border: none;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.navbar .dropdown-item {
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.navbar .dropdown-item:hover {
+  background-color: #f0f0ff;
+  color: #5A67D8;
+}
+
+.navbar .nav-link img {
+  border: 2px solid #5A67D8;
+  padding: 2px;
+  background-color: #fff;
+}
+
+.navbar-nav {
+  margin-left: auto;
+}
+
+/* Profile icon */
+.navbar .nav-link img {
+  border: 2px solid #5A67D8;
+  padding: 2px;
+  background-color: #fff;
+}
+
+/* Align profile icon to the right */
+.navbar-nav {
+  margin-left: auto;
+}
+
+/* Mobile support */
+@media (max-width: 768px) {
+  .navbar .dropdown-menu {
+    right: 0;
+    left: auto;
+  }
+}
+
+.container {
+  margin-top: 0.1rem !important; /* or adjust value like 1rem, 1.2rem etc */
+}

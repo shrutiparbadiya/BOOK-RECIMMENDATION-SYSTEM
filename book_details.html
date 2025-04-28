@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ book_name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/book_details.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+
+<!-- Bootstrap JS with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light px-4">
+  <a class="navbar-brand" href="{{ url_for('index') }}">Welcome {{username}}!</a>
+  <div class="collapse navbar-collapse justify-content-end">
+    {% if session.get('username') %}
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{{ url_for('static', filename='profile_icon.png') }}" alt="Profile" width="32" height="32" class="rounded-circle">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+            <!-- <li><a class="dropdown-item" href="{{ url_for('profile') }}">View My Profile</a></li> -->
+            <li><a class="dropdown-item" href="{{ url_for('wishlist') }}">Wishlist</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    {% endif %}
+  </div>
+</nav>
+
+  <div class="container">
+  <div class="book-details-layout">
+
+    <!-- Left Section -->
+    <div class="left-section">
+      <h1 class="book-title">{{ book_name }}</h1>
+      <p class="book-author">Author: {{ author }}</p>
+      <img class="book-image" src="{{ image_url }}" alt="{{ book_name }}">
+
+      <button id="wishlist-button"
+  {% if is_in_wishlist %}
+    disabled style="background-color: #48bb78; color: white; cursor: default;"
+  {% endif %}
+  onclick="{% if not is_in_wishlist %}addToWishlist(){% endif %}">
+  {% if is_in_wishlist %}
+    ✓ Added to Wishlist
+  {% else %}
+    Add to Wishlist
+  {% endif %}
+</button>
+
+
+
+      <a href="{{ url_for('index') }}" class="back-button", align=center>← Back to Library</a>
+    </div>
+
+    <!-- Right Section -->
+    <div class="right-section">
+      <h2>Recommended Books</h2>
+      <ul class="recommendations">
+        {% for rec_book, rec_image in recommendations %}
+        <li onclick="window.location.href='/book/{{ rec_book }}'">
+          <img src="{{ rec_image }}" alt="{{ rec_book }}">
+          <p>{{ rec_book }}</p>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+
+    <script>
+  function addToWishlist() {
+    fetch('/add_to_wishlist/{{ book_name }}', {
+      method: 'POST'
+    }).then(response => {
+      if (response.ok) {
+        const button = document.getElementById('wishlist-button');
+        button.textContent = '✓ Added to Wishlist';
+        button.style.backgroundColor = '#48bb78';
+        button.style.color = 'white';
+        button.disabled = true;
+        button.style.cursor = 'default';
+      }
+    });
+  }
+</script>
+<!-- Bootstrap JS (with Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-Qd03X7ZCzmYdb5QEVHy/XLXg2NREOSPIJsmPlFcbyxg1O9CzXL9GkFytSpSxIObu" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
